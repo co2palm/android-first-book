@@ -32,6 +32,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText email;
     private EditText name;
     private EditText password;
+    private EditText major;
     private Button signup;
     private TextView textView;
     private ImageView profile;
@@ -55,6 +56,7 @@ public class SignupActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.signupActivity_edittext_email);
         name = (EditText) findViewById(R.id.signupActivity_edittext_name);
         password = (EditText) findViewById(R.id.signupActivity_edittext_password);
+        major = (EditText) findViewById(R.id.signupActivity_edittext_major);
         signup = (Button) findViewById(R.id.signupActivity_button_signup);
 
 
@@ -72,7 +74,7 @@ public class SignupActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 final String uid = task.getResult().getUser().getUid();
-                                final StorageReference profileImageRef = FirebaseStorage.getInstance().getReference().child("userImages").child(uid);
+                                final StorageReference profileImageRef = FirebaseStorage.getInstance().getReference().child("users").child(uid);
 
                                 profileImageRef.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                                     @Override
